@@ -67,11 +67,11 @@ We will use the song and log datasets to create a _star_ schema optimized for qu
 | start_time  | TIMESTAMP | FOREIGN KEY |
 | user_id     | INT | FOREIGN KEY |
 | level       | VARCHAR | |
-| song_id     | TEXT |  |
-| artist_id   | TEXT |  |
+| song_id     | VARCHAR |  |
+| artist_id   | VARCHAR |  |
 | session_id  | INT | NOT NULL |
-| location    | TEXT | |
-| user_agent  | TEXT | |
+| location    | VARCHAR | |
+| user_agent  | VARCHAR | |
 
 Specifying a `PRIMARY KEY` attribute means that we are defining a field that uniquely identifies every different record in the table. A `FOREIGN KEY` attribute means the field uniquely identifies every different record in a different table where it also is a `PRIMARY KEY`. Lastly, a `NOT NULL` constraint makes the specified field required.
 
@@ -85,26 +85,26 @@ We will create four additional dimension tables: `users`, `songs`, `artists`, an
 | field name | field type | field attribute(s)  |
 | ----------- | ----------- | --------------- |
 | user_id | INT | PRIMARY KEY |
-| first_name | TEXT | |
-| last_name | TEXT | |
+| first_name | VARCHAR | |
+| last_name | VARCHAR | |
 | gender | VARCHAR | |
 | level | VARCHAR | |
 
 ***Table: `songs`***
 | field name | field type | field attribute(s)  |
 | ----------- | ----------- | --------------- |
-| song_id | TEXT | PRIMARY KEY |
-| title |  TEXT | NOT NULL |
-| artist_id | TEXT | FOREIGN KEY |
+| song_id | VARCHAR | PRIMARY KEY |
+| title |  VARCHAR | NOT NULL |
+| artist_id | VARCHAR | FOREIGN KEY |
 | year | INT | |
 | duration | FLOAT | |
 
 ***Table: `artists`***
 | field name | field type | field attribute(s)  |
 | ----------- | ----------- | --------------- |
-| artist_id | TEXT | PRIMARY KEY |
-| name | TEXT | NOT NULL |
-| location | TEXT | |
+| artist_id | VARCHAR | PRIMARY KEY |
+| name | VARCHAR | NOT NULL |
+| location | VARCHAR | |
 | latitude | FLOAT | |
 | longitude | FLOAT | |
 
@@ -136,9 +136,9 @@ This is an example of a query utilizing primary and foreign key attributes:
 
 ```sql
 CREATE TABLE IF NOT EXISTS songs (
-    song_id text,
-    title text NOT NULL,
-    artist_id text,
+    song_id varchar,
+    title varchar NOT NULL,
+    artist_id varchar,
     year int,
     duration float,
     PRIMARY KEY (song_id),
