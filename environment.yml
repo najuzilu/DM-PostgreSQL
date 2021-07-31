@@ -1,4 +1,4 @@
-name: dm-postgresql
+name: dm-postgre-sql
 channels:
 - defaults
 dependencies:
